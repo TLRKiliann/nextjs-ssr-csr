@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "server": "json-server -p4000 --watch db.json",
     "lint": "next lint"
   },
   "dependencies": {
@@ -21,6 +22,7 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
+    "json-server": "^0.17.1",
     "sass": "^1.57.1"
   }
 }

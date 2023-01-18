@@ -18,7 +18,7 @@ function User({ user }: any) {
 export default User
 
 export async function getStaticPaths() {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users")
+    const response = await fetch("http://localhost:4000/users")
     const data = await response.json()
 
     const paths = data.map((user: any) => {
@@ -44,13 +44,15 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
+    console.log("generate / re-generate")
     const {params} = context
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`)
+    const response = await fetch(`http://localhost:4000/users/${params.userId}`)
     const data = await response.json()
 
     return {
         props: {
             user: data
-        }
+        },
+        revalidate: 10,
     }
 }

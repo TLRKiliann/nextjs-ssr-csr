@@ -20,12 +20,13 @@ function Users({ users }: any) {
 export default Users
 
 export async function getStaticProps() {
-
-    const response = await fetch("https://jsonplaceholder.typicode.com/users")
+    console.log("generate / re-generate")
+    const response = await fetch("http://localhost:4000/users")
     const data = await response.json()
     return {
         props: {
             users: data
-        }
+        },
+        revalidate: 10,
     }
 }
