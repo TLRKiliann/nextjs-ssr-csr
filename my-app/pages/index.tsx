@@ -4,7 +4,7 @@ import styles from '@/styles/Home.module.scss'
 
 //const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+const Home = () => {
   return (
     <div>
       <main className={styles.main}>
@@ -14,3 +14,4 @@ export default function Home() {
     </div>
   )
 }
+export default Home

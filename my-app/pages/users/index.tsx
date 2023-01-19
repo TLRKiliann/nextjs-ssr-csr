@@ -1,7 +1,17 @@
 import Link from 'next/link'
 import styles from '@/styles/Home.module.scss'
+import { GetStaticProps } from 'next'
 
-function Users({ users }: any) {
+type UsersProps = {
+    users: {
+        map: any
+        id: number
+        name: string
+        email: string
+    }
+}
+
+const Users = ({ users }: UsersProps) => {
     return(
         <div>
             <h1>
@@ -19,7 +29,7 @@ function Users({ users }: any) {
 }
 export default Users
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
     console.log("generate / re-generate")
     const response = await fetch("http://localhost:4000/users")
     const data = await response.json()
