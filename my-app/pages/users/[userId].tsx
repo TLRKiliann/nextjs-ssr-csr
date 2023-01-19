@@ -1,8 +1,17 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '@/styles/Home.module.scss'
+import { GetStaticPaths, GetStaticProps } from 'next'
 
-function User({ user }: any) {
+type UserProps = {
+    user: {
+        id: number
+        name: string
+        email: string
+    }
+}
+
+const User = ({ user }: UserProps) => {
     const router = useRouter()
 
     if (router.isFallback) {
@@ -17,7 +26,7 @@ function User({ user }: any) {
 }
 export default User
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
     const response = await fetch("http://localhost:4000/users")
     const data = await response.json()
 
@@ -43,7 +52,7 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps(context: any) {
+export const getStaticProps: GetStaticProps = async (context: any) => {
     console.log("generate / re-generate")
     const {params} = context
     const response = await fetch(`http://localhost:4000/users/${params.userId}`)
